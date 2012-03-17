@@ -19,6 +19,21 @@ body.logged_in #nav li a {
   height: 24px;
 }
 
+
+/*Wordpress pages sidebar*/
+
+#main .widget-area .shailan_SubpagesWidget,
+#main .widget-container ul,
+#main ul.subpages li,
+#main .widget-container {
+  list-style: none;
+  background: none;
+}
+#col3 #secondary {
+  padding-top: 20px;
+}
+
+
 /*Tabs onboarding aboutpage*/
 
 #main .ui-widget {
