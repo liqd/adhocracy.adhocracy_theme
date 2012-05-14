@@ -36,7 +36,7 @@
     <replace content="//a[@class='staticlink_imprint']/attribute::href" ><xsl:attribute name="href">/_pages/about/impressum</xsl:attribute></replace>
 
     <!--Body-->
-    <copy theme="/html/body" content="/html/body" />
+    <replace theme="/html/body" content="/html/body"/>
 
     <!--Navigation - about menu-->
     <replace css:content="li#nav_about">
