@@ -1,0 +1,23 @@
+<rules
+	xmlns="http://namespaces.plone.org/diazo"
+	xmlns:css="http://namespaces.plone.org/diazo/css"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<!--Content body and sidebar: startpage with merged wordpress-->
+	<rules if-content="//div[@id='content-startpage']">
+		<!--WARNING: throws error if the wordpress backend is not available-->
+		<!--Merge wordpress content section-->
+		<replace css:content-children="div#content-startpage">
+			<xsl:variable name="page"
+				select="concat( $backend, '/_pages/startseite.html' )"/>
+			<xsl:copy-of
+				select="document($page)//*[contains(@class, 'entry-content')]/*"/>
+			<p>
+				<xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
+			</p>
+		</replace>
+
+	</rules>
+</rules>
+
