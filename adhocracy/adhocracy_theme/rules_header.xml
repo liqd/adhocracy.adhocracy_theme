@@ -1,0 +1,60 @@
+<rules
+	xmlns="http://namespaces.plone.org/diazo"
+	xmlns:css="http://namespaces.plone.org/diazo/css"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<!-- Head: meta -->
+	<drop theme="/html/head/meta" if-content="/html/head/meta"/>
+
+	<prepend theme="/html/head" content="/html/head/meta" />
+
+	<replace theme="/html/head/title" content="/html/head/title"
+		if="not(contains($path, '/_pages'))" />
+
+	<replace theme="/html/head/title" if-path="/_pages">
+		<xsl:variable name="url_path"
+			select="substring-after($path, '/_pages/')"/>
+
+		<xsl:variable name='filename'>
+			<xsl:choose>
+				<xsl:when test="substring( $url_path, string-length( $url_path ) -1 ) != '/'">
+					<xsl:value-of
+						select="$url_path"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of
+						select="substring( $url_path, 1, string-length( $url_path ) -1 )"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:variable name="page"
+			select="concat( $backend, '/_pages/', $filename, '.html' )"/>
+		<xsl:copy-of select="document($page)/html/head/title"/>
+	</replace>
+
+	<!-- Head: base tag -->
+	<replace theme="/html/head/base" content="/html/head/base" />
+
+	<!-- Head: styles and scripts-->
+	<drop theme="/html/head/link[not(contains(@href, 'style_custom.css'))
+		and contains(@rel, 'stylesheet')]" if-content="/html/head/link"/>
+
+	<before theme="/html/head/link[1]"
+		content="/html/head/link[contains(@rel, 'stylesheet')]" />
+
+	<drop theme="/html/head/script" if-content="/html/head/script"/>
+
+	<append theme="/html/head" content="/html/head/script" />
+
+	<append theme="/html/head" content="/html/head/style" />
+
+	<!--Conditional comments-->
+	<append theme="/html/head">
+		<xsl:for-each select="/html/head/comment()">
+			<xsl:copy />
+		</xsl:for-each>
+	</append>
+
+</rules>
