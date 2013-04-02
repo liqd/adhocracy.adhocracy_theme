@@ -24,6 +24,8 @@
     <drop theme="/html/head/script" if-content="/html/head/script"/>
     <append theme="/html/head" content="/html/head/script" />
     <append theme="/html/head" content="/html/head/style" />
+    <!-- RSS -->
+    <replace theme="/html/head/link[contains(@type, 'application/rss+xml')]" content="/html/head/link[contains(@type, 'application/rss+xml')]" />
     <!--Conditional comments-->
     <append theme="/html/head">
       <xsl:for-each select="/html/head/comment()">
