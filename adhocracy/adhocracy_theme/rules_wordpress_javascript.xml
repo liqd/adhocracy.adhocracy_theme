@@ -11,12 +11,12 @@
       <xsl:variable name="url_aboutpage" select="concat('http://', $wordpress_backend, '/mehr-erfahren/')"/>
       <xsl:for-each select="document($url_aboutpage)//script">
         <xsl:copy>
+          <xsl:copy-of select="@*|node()"/>
           <xsl:if test="@src and starts-with(@src, concat('http://', $wordpress_backend))">
             <xsl:attribute name="src">
               <xsl:value-of select="concat('https://', substring-after(@src, 'http://'))"/>
             </xsl:attribute>
           </xsl:if>
-          <xsl:apply-templates match="@*|node()"/>
         </xsl:copy>
       </xsl:for-each>
       <p><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text></p>
@@ -26,10 +26,10 @@
       <xsl:variable name="url_aboutpage" select="concat('http://', $wordpress_backend, '/mehr-erfahren/')"/>
       <xsl:for-each select="document($url_aboutpage)/html/head/link[contains(@href, '.ui.')]">
         <xsl:copy>
+          <xsl:copy-of select="@*|node()"/>
           <xsl:attribute name="href">
             <xsl:value-of select="concat('https://', substring-after(@href, 'http://'))"/>
           </xsl:attribute>
-          <xsl:apply-templates match="@*|node()"/>
         </xsl:copy>
       </xsl:for-each>
     </after>
