@@ -9,8 +9,16 @@
     <!--Merge in wordpress javascript to generate tabs-->
     <replace css:content-children="div#external_scripts">
       <xsl:variable name="url_aboutpage" select="concat('http://', $wordpress_backend, '/mehr-erfahren/')"/>
-      <xsl:copy-of select="document($url_aboutpage)/html/body/script[position() &gt; 1]"/>
-      <xsl:copy-of select="document($url_aboutpage)//script"/>
+      <xsl:for-each select="document($url_aboutpage)//script">
+        <xsl:copy>
+          <xsl:if test="@src and starts-with(@src, concat('http://', $wordpress_backend))">
+            <xsl:attribute name="src">
+              <xsl:value-of select="concat('https://', substring-after(@src, 'http://'))"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:apply-templates match="@*|node()"/>
+        </xsl:copy>
+      </xsl:for-each>
       <p><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text></p>
     </replace>
     <!--Merge in wordpress css to generate tabs-->
