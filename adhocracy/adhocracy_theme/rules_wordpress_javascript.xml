@@ -24,7 +24,14 @@
     <!--Merge in wordpress css to generate tabs-->
     <after theme="/html/head/title">
       <xsl:variable name="url_aboutpage" select="concat('http://', $wordpress_backend, '/mehr-erfahren/')"/>
-      <xsl:copy-of select="document($url_aboutpage)/html/head/link[contains(@href, '.ui.')]"/>
+      <xsl:for-each select="document($url_aboutpage)/html/head/link[contains(@href, '.ui.')]">
+        <xsl:copy>
+          <xsl:attribute name="href">
+            <xsl:value-of select="concat('https://', substring-after(@href, 'http://'))"/>
+          </xsl:attribute>
+          <xsl:apply-templates match="@*|node()"/>
+        </xsl:copy>
+      </xsl:for-each>
     </after>
 
   </rules>
