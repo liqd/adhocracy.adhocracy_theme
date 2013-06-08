@@ -16,3 +16,5 @@ data/*
 docs/_build/*
 test-data/index
 site/*
+*~
+.*~
