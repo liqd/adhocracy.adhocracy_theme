@@ -9,17 +9,6 @@
 ******************************************************/
 
 
-/*Main navigation*/
-
-#nav li {
-    padding-top: 7px; /*make drop down menus work*/
-}
-body.logged_in #nav li,
-body.logged_in #nav li a {
-    height: 24px;
-}
-
-
 /*Wordpress pages sidebar*/
 
 #main .widget-area .shailan_SubpagesWidget,
