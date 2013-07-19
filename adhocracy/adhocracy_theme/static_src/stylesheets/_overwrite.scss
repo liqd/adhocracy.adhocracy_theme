@@ -27,34 +27,32 @@
 
 #main .ui-widget {
     font-family: Arial,sans-serif;
-}
-#main .ui-widget input,
-#main .ui-widget button {
-    font-family: Arial,sans-serif;
-    font-size: 13px;
-}
-/* TODO: This could be much shorter [joka] */
-#main .ui-widget p,
-#main .ui-widget h1,
-#main .ui-widget h2,
-#main .ui-widget h3 {
-    margin-left: 23px;
-    margin-right: 23px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 65%;
-}
-#main .ui-widget .register {
-    margin-left: 13px;
-}
-#main .ui-widget img {
-    margin-left: 23px;
-    margin-right: 23px;
-}
-#main .ui-widget h1 {
-    margin: 0 23px 27px 23px;
-    padding: 27px 0 0 0;
-    border-bottom: 1px dotted #CCC;
+
+    input, button {
+        font-family: Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    /* TODO: This could be much shorter [joka] */
+    p, h1, h2, h3 {
+        margin-left: 23px;
+        margin-right: 23px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 65%;
+    }
+    .register {
+        margin-left: 13px;
+    }
+    img {
+        margin-left: 23px;
+        margin-right: 23px;
+    }
+    h1 {
+        margin: 0 23px 27px 23px;
+        padding: 27px 0 0 0;
+        border-bottom: 1px dotted $border;
+    }
 }
 #tabs-1 {
     min-height: 714px;
@@ -103,6 +101,7 @@
     border:none;
     padding:0;
 }
+
 #main .ui-tabs-nav {
     border:none;
     clear: none;
@@ -111,39 +110,44 @@
     font-size: 15px;
     color: #fff;
     margin-top: -20px;
-}
-#main .ui-tabs-nav li {
-    height: 36px;
-    line-height: 36px;
-}
-#main .ui-tabs-nav li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 19px;
-    display: block;
-    font-weight: bold;
-    font-size: 15px;
-    @include button($button-color);
-}
-#main .ui-tabs-nav li.ui-state-active a {
-    background: url('/images/sprite_tab_navigation.png') repeat-x 0 -10px;
-    color: $black;
-    background-color: #fff;
-    @include background-image(linear-gradient(to bottom, darken(#fff, 12%), #fff));
-    &:hover {
-        background-color: darken(#fff, 7%);
-        @include background-image(linear-gradient(to bottom, darken(#fff, 16%), #fff));
+
+    li {
+        height: 36px;
+        line-height: 36px;
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 19px;
+            display: block;
+            font-weight: bold;
+            font-size: 15px;
+            @include button($button-color);
+        }
+        &.ui-state-active {
+            a {
+                background: url('/images/sprite_tab_navigation.png') repeat-x 0 -10px;
+                color: $black;
+                background-color: #fff;
+                @include background-image(linear-gradient(to bottom, darken(#fff, 12%), #fff));
+                &:hover {
+                    background-color: darken(#fff, 7%);
+                    @include background-image(linear-gradient(to bottom, darken(#fff, 16%), #fff));
+                }
+            }
+        }
+        &:hover {
+            background: url('/images/sprite_tab_navigation.png') repeat-x 0 -111px;
+            a {
+                color: #fff;
+            }
+        }
+        &:focus a {
+            outline: none;
+        }
     }
 }
-#main .ui-tabs-nav li:hover a {
-    color: #fff;
-}
-#main .ui-tabs-nav li:focus a {
-    outline: none;
-}
-#main .ui-tabs-nav li:hover {
-    background: url('/images/sprite_tab_navigation.png') repeat-x 0 -111px;
-}
+
 #main .ui-widget-header,
 #main .ui-tabs-nav li {
     @include border-radius(0);
