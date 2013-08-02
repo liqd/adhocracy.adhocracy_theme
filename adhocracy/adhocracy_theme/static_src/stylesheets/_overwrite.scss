@@ -110,12 +110,11 @@
     font-weight: bold;
     font-size: 15px;
     color: #fff;
-    margin: 0px;
+    margin-top: -20px;
 }
 #main .ui-tabs-nav li {
     height: 36px;
     line-height: 36px;
-    background: url('/images/sprite_tab_navigation.png') repeat-x 0 -60px;
 }
 #main .ui-tabs-nav li a {
     color: #fff;
@@ -124,12 +123,17 @@
     display: block;
     font-weight: bold;
     font-size: 15px;
+    @include button($button-color);
 }
 #main .ui-tabs-nav li.ui-state-active a {
-    color: #2D3441;
-}
-#main .ui-tabs-nav li.ui-state-active {
     background: url('/images/sprite_tab_navigation.png') repeat-x 0 -10px;
+    color: $black;
+    background-color: #fff;
+    @include background-image(linear-gradient(to bottom, darken(#fff, 12%), #fff));
+    &:hover {
+        background-color: darken(#fff, 7%);
+        @include background-image(linear-gradient(to bottom, darken(#fff, 16%), #fff));
+    }
 }
 #main .ui-tabs-nav li:hover a {
     color: #fff;
