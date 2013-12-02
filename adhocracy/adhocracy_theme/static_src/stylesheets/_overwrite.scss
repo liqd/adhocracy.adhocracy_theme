@@ -10,16 +10,21 @@
 
 
 /*Wordpress pages sidebar*/
+.subpages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 
-#main .widget-area .shailan_SubpagesWidget,
-#main .widget-container ul,
-#main ul.subpages li,
-#main .widget-container {
-    list-style: none;
-    background: none;
-}
-#col3 #secondary {
-    padding-top: 20px;
+    ul {
+        list-style-type: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .current_page_item > a {
+        font-weight: bold;
+    }
 }
 
 
