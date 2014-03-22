@@ -6,6 +6,9 @@
 
   <theme href="theme.html" />
 
+  <!--do not theme ajax requests-->
+  <xi:include href="../../../adhocracy.wordpressbasic_theme/adhocracy/wordpressbasic_theme/rules_notheme.xml" />
+
   <rules if-content="/html/body/div[@id='main']">
 
     <!-- Head: meta -->
